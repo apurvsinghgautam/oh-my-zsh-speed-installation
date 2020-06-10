@@ -5,7 +5,15 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 sed -i "s/plugins=/plugins=(git zsh-autosuggestions zsh-syntax-highlighting) #/" ~/.zshrc
+
+echo ('Choose a theme: 1.Powerlevel10k 2.Agnoster ')
+read choice
+if [ $choice -eq 1 ]; then
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+cat ~/.zshrc | sed -e "s/robbyrussel/powerlevel10k\/powerlevel10k/" ~/.zshrc
+else
 sed -i "s/robbyrussel/agnoster/" ~/.zshrc
+fi
 
 echo "alias c=clear" >> .zshrc
 echo "alias l='ls -l'" >> .zshrc
